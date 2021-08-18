@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+  app:
+    build: .
+    command: netlify-lambda serve
+    networks:
+      frontend:
+    ports:
+      - '9000:9000'
+    volumes:
+      - .:/src/app:z
+      - npm_cache:/src/app/node_modules
+
+networks:
+  frontend:
+    name: cliniko_frontend
+
+volumes:
+  npm_cache:
